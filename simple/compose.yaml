@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+
+  # Postgres service with custom config
+  db:
+    image: postgres:16.3-alpine3.18
+    command: "postgres -c config_file=/database/postgresql.conf"
+    restart: always
+    ports:
+      - 1234:5432
+    env_file: .env
+    environment:
+      PGDATA: /data
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./database:/database
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 32M
+
+  # For debugging database purposes
+  adminer:
+    image: adminer:4.8.1-standalone
+    restart: always
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
+
+# Persist database
+volumes:
+  db: {}      
