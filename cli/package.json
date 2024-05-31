@@ -2,10 +2,14 @@
   "scripts": {
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
+    "studio": "drizzle-kit studio",
     "cli": "ts-node src/main.ts",
     "prettier": "prettier --write --no-semi --single-quote --trailing-comma none ."
   },
   "dependencies": {
+    "@types/node": "^20.12.13",
+    "consola": "^3.2.3",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.21.4",
     "drizzle-orm": "^0.30.10",
     "postgres": "^3.4.4",
