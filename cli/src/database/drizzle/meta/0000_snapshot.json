@@ -116,12 +116,8 @@
           "name": "Todo_Tag_todo_id_Todo_todo_id_fk",
           "tableFrom": "Todo_Tag",
           "tableTo": "Todo",
-          "columnsFrom": [
-            "todo_id"
-          ],
-          "columnsTo": [
-            "todo_id"
-          ],
+          "columnsFrom": ["todo_id"],
+          "columnsTo": ["todo_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -179,9 +175,7 @@
         "Users_email_unique": {
           "name": "Users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       }
     },
@@ -229,12 +223,8 @@
           "name": "Users_Todo_user_id_Users_user_id_fk",
           "tableFrom": "Users_Todo",
           "tableTo": "Users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "user_id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["user_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -242,12 +232,8 @@
           "name": "Users_Todo_todo_id_Todo_todo_id_fk",
           "tableFrom": "Users_Todo",
           "tableTo": "Todo",
-          "columnsFrom": [
-            "todo_id"
-          ],
-          "columnsTo": [
-            "todo_id"
-          ],
+          "columnsFrom": ["todo_id"],
+          "columnsTo": ["todo_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
