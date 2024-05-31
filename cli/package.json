@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "cli": "ts-node src/main.ts",
+    "prettier": "prettier --write --no-semi --single-quote --trailing-comma none ."
+  },
+  "dependencies": {
+    "drizzle-kit": "^0.21.4",
+    "drizzle-orm": "^0.30.10",
+    "postgres": "^3.4.4",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2"
+  }
+}
