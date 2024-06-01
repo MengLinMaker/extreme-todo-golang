@@ -7,7 +7,7 @@ import {
   boolean
 } from 'drizzle-orm/pg-core'
 
-const _bigserial = (key) => bigserial(key, { mode: 'number' })
+const _bigserial = (key: string) => bigserial(key, { mode: 'number' })
 
 export const Users_Table = pgTable('Users', {
   user_id: _bigserial('user_id').primaryKey(),
@@ -30,7 +30,7 @@ export const Todo_Table = pgTable('Todo', {
 })
 
 export const Users_Todo_Table = pgTable('Users_Todo', {
-  users_todo_id: _bigserial('todo_id').primaryKey(),
+  users_todo_id: _bigserial('users_todo_id').primaryKey(),
   user_id: _bigserial('user_id').references(() => Users_Table.user_id),
   todo_id: _bigserial('todo_id').references(() => Todo_Table.todo_id),
   can_edit: boolean('done').notNull().default(false),

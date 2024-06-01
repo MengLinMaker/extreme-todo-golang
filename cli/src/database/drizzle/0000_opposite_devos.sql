@@ -29,8 +29,9 @@ CREATE TABLE IF NOT EXISTS "Users" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "Users_Todo" (
-	"todo_id" bigserial NOT NULL,
+	"users_todo_id" bigserial PRIMARY KEY NOT NULL,
 	"user_id" bigserial NOT NULL,
+	"todo_id" bigserial NOT NULL,
 	"done" boolean DEFAULT false NOT NULL,
 	"created_time" timestamp DEFAULT now() NOT NULL,
 	"updated_time" timestamp DEFAULT now() NOT NULL

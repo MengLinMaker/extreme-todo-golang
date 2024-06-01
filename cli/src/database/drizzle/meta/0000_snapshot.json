@@ -1,5 +1,5 @@
 {
-  "id": "23e3b21a-f4ad-4f3d-ae13-5322ffeb75a6",
+  "id": "fec2adb7-9a60-4b9a-aca0-a687cc5e3c13",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -116,8 +116,12 @@
           "name": "Todo_Tag_todo_id_Todo_todo_id_fk",
           "tableFrom": "Todo_Tag",
           "tableTo": "Todo",
-          "columnsFrom": ["todo_id"],
-          "columnsTo": ["todo_id"],
+          "columnsFrom": [
+            "todo_id"
+          ],
+          "columnsTo": [
+            "todo_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -175,7 +179,9 @@
         "Users_email_unique": {
           "name": "Users_email_unique",
           "nullsNotDistinct": false,
-          "columns": ["email"]
+          "columns": [
+            "email"
+          ]
         }
       }
     },
@@ -183,14 +189,20 @@
       "name": "Users_Todo",
       "schema": "",
       "columns": {
-        "todo_id": {
-          "name": "todo_id",
+        "users_todo_id": {
+          "name": "users_todo_id",
           "type": "bigserial",
-          "primaryKey": false,
+          "primaryKey": true,
           "notNull": true
         },
         "user_id": {
           "name": "user_id",
+          "type": "bigserial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "todo_id": {
+          "name": "todo_id",
           "type": "bigserial",
           "primaryKey": false,
           "notNull": true
@@ -223,8 +235,12 @@
           "name": "Users_Todo_user_id_Users_user_id_fk",
           "tableFrom": "Users_Todo",
           "tableTo": "Users",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["user_id"],
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "user_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -232,8 +248,12 @@
           "name": "Users_Todo_todo_id_Todo_todo_id_fk",
           "tableFrom": "Users_Todo",
           "tableTo": "Todo",
-          "columnsFrom": ["todo_id"],
-          "columnsTo": ["todo_id"],
+          "columnsFrom": [
+            "todo_id"
+          ],
+          "columnsTo": [
+            "todo_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
