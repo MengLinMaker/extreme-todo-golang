@@ -2,9 +2,10 @@ import { PgTransaction } from "drizzle-orm/pg-core";
 import { PostgresJsQueryResultHKT } from "drizzle-orm/postgres-js";
 import { ExtractTablesWithRelations } from "drizzle-orm";
 import { faker } from '@faker-js/faker';
-import { Todo_Table, Todo_Tag_Table, Users_Table, Users_Todo_Table } from "./schema";
+import { Todos_Table, Todo_Tags_Table, Users_Table, Users_Todos_Table } from "./schema";
+import { db } from "./db";
 
-type Transaction = PgTransaction<PostgresJsQueryResultHKT, Record<string, never>, ExtractTablesWithRelations<Record<string, never>>> | any
+type Transaction = PgTransaction<PostgresJsQueryResultHKT, Record<string, never>, ExtractTablesWithRelations<Record<string, never>>> | typeof db
 
 export const insertDummyUser = async (tx: Transaction) => {
   const Users = await tx.insert(Users_Table).values({
@@ -16,22 +17,22 @@ export const insertDummyUser = async (tx: Transaction) => {
 }
 
 export const insertDummyTodo = async (tx: Transaction, user_id: number) => {
-  const Todo = await tx.insert(Todo_Table).values({
+  const Todo = await tx.insert(Todos_Table).values({
     title: faker.person.fullName(),
     description: faker.lorem.paragraphs({ min: 0, max: 3 })
   }).returning()
-  await tx.insert(Users_Todo_Table).values({
+  await tx.insert(Users_Todos_Table).values({
     user_id: user_id,
     todo_id: Todo[0].todo_id,
     can_edit: true
   }).returning({
-    todo_id: Todo_Table.todo_id
+    todo_id: Todos_Table.todo_id
   })
   return Todo[0].todo_id
 }
 
 export const insertDummyTodoTag = async (tx: Transaction, todo_id: number) => {
-  const Todo_Tag = await tx.insert(Todo_Tag_Table).values({
+  const Todo_Tag = await tx.insert(Todo_Tags_Table).values({
     todo_id: todo_id,
     title: faker.color.human(),
     description: faker.lorem.paragraphs({ min: 0, max: 3 })
