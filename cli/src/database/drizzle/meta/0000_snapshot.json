@@ -1,11 +1,73 @@
 {
-  "id": "fec2adb7-9a60-4b9a-aca0-a687cc5e3c13",
+  "id": "45f00802-fc04-42c8-88f6-5a4616c91501",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
-    "public.Todo": {
-      "name": "Todo",
+    "public.todo_tags": {
+      "name": "todo_tags",
+      "schema": "",
+      "columns": {
+        "todo_tag_id": {
+          "name": "todo_tag_id",
+          "type": "bigserial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "todo_id": {
+          "name": "todo_id",
+          "type": "bigserial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "todo_tags_todo_id_todos_todo_id_fk": {
+          "name": "todo_tags_todo_id_todos_todo_id_fk",
+          "tableFrom": "todo_tags",
+          "tableTo": "todos",
+          "columnsFrom": [
+            "todo_id"
+          ],
+          "columnsTo": [
+            "todo_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.todos": {
+      "name": "todos",
       "schema": "",
       "columns": {
         "todo_id": {
@@ -67,70 +129,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.Todo_Tag": {
-      "name": "Todo_Tag",
-      "schema": "",
-      "columns": {
-        "todo_tag_id": {
-          "name": "todo_tag_id",
-          "type": "bigserial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "todo_id": {
-          "name": "todo_id",
-          "type": "bigserial",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_time": {
-          "name": "created_time",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_time": {
-          "name": "updated_time",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "Todo_Tag_todo_id_Todo_todo_id_fk": {
-          "name": "Todo_Tag_todo_id_Todo_todo_id_fk",
-          "tableFrom": "Todo_Tag",
-          "tableTo": "Todo",
-          "columnsFrom": [
-            "todo_id"
-          ],
-          "columnsTo": [
-            "todo_id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "public.Users": {
-      "name": "Users",
+    "public.users": {
+      "name": "users",
       "schema": "",
       "columns": {
         "user_id": {
@@ -176,8 +176,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "Users_email_unique": {
-          "name": "Users_email_unique",
+        "users_email_unique": {
+          "name": "users_email_unique",
           "nullsNotDistinct": false,
           "columns": [
             "email"
@@ -185,12 +185,12 @@
         }
       }
     },
-    "public.Users_Todo": {
-      "name": "Users_Todo",
+    "public.users_todos": {
+      "name": "users_todos",
       "schema": "",
       "columns": {
-        "users_todo_id": {
-          "name": "users_todo_id",
+        "user_todo_id": {
+          "name": "user_todo_id",
           "type": "bigserial",
           "primaryKey": true,
           "notNull": true
@@ -231,10 +231,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "Users_Todo_user_id_Users_user_id_fk": {
-          "name": "Users_Todo_user_id_Users_user_id_fk",
-          "tableFrom": "Users_Todo",
-          "tableTo": "Users",
+        "users_todos_user_id_users_user_id_fk": {
+          "name": "users_todos_user_id_users_user_id_fk",
+          "tableFrom": "users_todos",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
@@ -244,10 +244,10 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "Users_Todo_todo_id_Todo_todo_id_fk": {
-          "name": "Users_Todo_todo_id_Todo_todo_id_fk",
-          "tableFrom": "Users_Todo",
-          "tableTo": "Todo",
+        "users_todos_todo_id_todos_todo_id_fk": {
+          "name": "users_todos_todo_id_todos_todo_id_fk",
+          "tableFrom": "users_todos",
+          "tableTo": "todos",
           "columnsFrom": [
             "todo_id"
           ],
