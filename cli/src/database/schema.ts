@@ -4,7 +4,8 @@ import {
   timestamp,
   pgTable,
   bigserial,
-  boolean
+  boolean,
+  index
 } from 'drizzle-orm/pg-core'
 
 const _bigserial = (key: string) => bigserial(key, { mode: 'number' })
@@ -16,6 +17,12 @@ export const Users_Table = pgTable('users', {
   email: text('email').notNull().unique(),
   created_time: timestamp('created_time').defaultNow().notNull(),
   updated_time: timestamp('updated_time').defaultNow().notNull()
+}, (table) => {
+  return {
+    users_first_name_index: index("users_first_name_index").on(table.first_name),
+    users_last_name_index: index("users_last_name_index").on(table.last_name),
+    users_email_index: index("users_email_index").on(table.email)
+  }
 })
 
 export const Todos_Table = pgTable('todos', {
@@ -27,6 +34,10 @@ export const Todos_Table = pgTable('todos', {
   done: boolean('done').notNull().default(false),
   created_time: timestamp('created_time').defaultNow().notNull(),
   updated_time: timestamp('updated_time').defaultNow().notNull()
+}, (table) => {
+  return {
+    todos_title_index: index("todos_title_index").on(table.title)
+  }
 })
 
 export const Users_Todos_Table = pgTable('users_todos', {
@@ -45,4 +56,8 @@ export const Todo_Tags_Table = pgTable('todo_tags', {
   description: text('description'),
   created_time: timestamp('created_time').defaultNow().notNull(),
   updated_time: timestamp('updated_time').defaultNow().notNull()
+}, (table) => {
+  return {
+    todo_tags_title_index: index("todo_tags_title_index").on(table.title)
+  }
 })
