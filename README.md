@@ -8,3 +8,6 @@ The topics that will be explored will include:
 * [Kubernetes](https://kubernetes.io/) using [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download)
 
 Note: Now `.env` is committed in this repo. Obviously leave this out in an actual application.
+
+# Simple
+Single postgres instance with custom configs. `pg_stat_statements` enables query performance monitoring through the `query_performance` view. 
