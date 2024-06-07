@@ -19,7 +19,7 @@ services:
         limits:
           # Simulate 1 vCPU and 
           cpus: '0.5'
-          memory: 256M
+          memory: 128M
 
 # Persist database
 volumes:
