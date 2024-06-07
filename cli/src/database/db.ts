@@ -10,9 +10,10 @@ const queryClient = postgres(process.env.POSTGRES_URL!)
 export const db = drizzle(queryClient)
 
   ; (async () => {
-    // Create "query_performance" view from "pg_stat_statements" for performance monitoring
-    await db.execute(sql`CREATE EXTENSION IF NOT EXISTS pg_stat_statements`)
-    await db.execute(sql`CREATE VIEW query_performance AS
+    try {
+      // Create "query_performance" view from "pg_stat_statements" for performance monitoring
+      await db.execute(sql`CREATE EXTENSION IF NOT EXISTS pg_stat_statements`)
+      await db.execute(sql`CREATE VIEW query_performance AS
       SELECT
         query,
         ROUND(total_exec_time::NUMERIC) AS total_exec_time,
@@ -30,5 +31,7 @@ export const db = drizzle(queryClient)
       ORDER BY total_exec_time DESC
       LIMIT 20;
     `)
+    }
+    catch { }
   })()
 
