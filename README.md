@@ -1,5 +1,5 @@
 # Postgres streaming replication with repmgr on Kubernetes
-### But why?
+## But why?
 Like most over-engineered apps, this is purely educational purposes.
 
 In the case of smaller projects, it makes more sense to to use a managed postgres provider.
