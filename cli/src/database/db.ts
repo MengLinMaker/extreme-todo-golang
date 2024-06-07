@@ -26,10 +26,14 @@ export const db = drizzle(queryClient)
         ROUND(mean_exec_time::NUMERIC, 3) AS mean_exec_time,
         ROUND(max_exec_time::NUMERIC, 3) AS max_exec_time,
         ROUND(stddev_exec_time::NUMERIC, 3) AS stddev_exec_time,
+        ROUND(
+          100 * shared_blks_hit / nullif(shared_blks_hit + shared_blks_read, 0),
+          2
+        ) AS percentage_cache_hit,
         rows
       FROM pg_stat_statements
       ORDER BY total_exec_time DESC
-      LIMIT 20;
+      LIMIT 100;
     `)
     }
     catch { }
