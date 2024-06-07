@@ -11,3 +11,6 @@ Note: Now `.env` is committed in this repo. Obviously leave this out in an actua
 
 # Simple
 Single postgres instance with custom configs. `pg_stat_statements` enables query performance monitoring through the `query_performance` view. 
+
+# Repmgr
+Master with read slave using [repmgr](https://www.repmgr.org/). Similar setup to the "simple" example.
