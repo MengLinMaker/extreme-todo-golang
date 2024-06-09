@@ -1,20 +1,14 @@
 version: '3.9'
 services:
   pg-0:
-    image: bitnami/postgresql-repmgr:16.3.0-debian-12-r10
-    command: "postgres -c config_file=/database/postgresql.conf"
+    build:
+      context: .
     ports:
       - 1234:5432
-    volumes:
-      - pg_0_data:/bitnami/postgresql
-      - ./database:/database
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=db
-      - POSTGRESQL_USERNAME=user
-      - POSTGRESQL_PASSWORD=password
-      - POSTGRESQL_DATABASE=db
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=adminpassword
+      - POSTGRESQL_DATABASE=postgres
       - REPMGR_PASSWORD=repmgrpassword
       - REPMGR_PRIMARY_HOST=pg-0
       - REPMGR_PARTNER_NODES=pg-0,pg-1
@@ -26,17 +20,14 @@ services:
           cpus: '0.5'
           memory: 128M
   pg-1:
-    image: bitnami/postgresql-repmgr:16.3.0-debian-12-r10
-    command: "postgres -c config_file=/database/postgresql.conf"
+    build:
+      context: .
     ports:
       - 5432
-    volumes:
-      - pg_1_data:/bitnami/postgresql
-      - ./database:/database
     environment:
-      - POSTGRESQL_USERNAME=user
-      - POSTGRESQL_PASSWORD=password
-      - POSTGRESQL_DATABASE=db
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=adminpassword
+      - POSTGRESQL_DATABASE=postgres
       - REPMGR_PASSWORD=repmgrpassword
       - REPMGR_PRIMARY_HOST=pg-0
       - REPMGR_PARTNER_NODES=pg-0,pg-1
@@ -62,6 +53,3 @@ services:
         limits:
           cpus: '0.5'
           memory: 128M
-volumes:
-  pg_0_data: {}
-  pg_1_data: {}
