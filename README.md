@@ -25,7 +25,9 @@ Note: Now `.env` is committed in this repo. Obviously leave this out in an actua
 Single postgres instance with custom configs. `pg_stat_statements` enables query performance monitoring through the `query_performance` view. 
 
 ## Repmgr
-Master with read slave using [repmgr](https://www.repmgr.org/). Similar setup to the "simple" example. 
+Master with read slave using [repmgr](https://www.repmgr.org/). Similar setup to the "simple" example.
+
+Note: in this example `pg_stat_statements` is not enabled.
 
 ## Conclusion
-Setting up postgres replication is tedious work. There are services that 
+Setting up postgres replication is tedious work.
